@@ -1,6 +1,13 @@
+(function(root, factory) {
+    var api = factory(root.jQuery);
 
-// stolen from http://css-tricks.com/persistent-headers/
-(function ($) {
+    if (typeof module !== "undefined" && module.exports)
+        module.exports = api;
+}(typeof globalThis !== "undefined" ? globalThis : this, function($) {
+    function shouldShowFloatingHeader(scrollTop, offsetTop, elementHeight) {
+        return (scrollTop > offsetTop) && (scrollTop < offsetTop + elementHeight);
+    }
+
     function updateTH () {
         $(".persist-area").each(function() {
             var $el = $(this)
@@ -8,13 +15,14 @@
             ,   scrollTop = $(window).scrollTop()
             ,   $floatingHeader = $(".floatingHeader", this)
             ;
-            if ((scrollTop > offset.top) && (scrollTop < offset.top + $el.height()))
+            if (shouldShowFloatingHeader(scrollTop, offset.top, $el.height()))
                 $floatingHeader.css({ "visibility": "visible" });
             else
                $floatingHeader.css({ "visibility": "hidden" });
         });
     }
-    $(function() {
+
+    function initStickyHeaders() {
         var $clonedHeaderRow;
         $(".persist-area").each(function() {
             $clonedHeaderRow = $(".persist-header", this);
@@ -33,5 +41,14 @@
         $(window)
             .scroll(updateTH)
             .trigger("scroll");
-    });
-}(jQuery));
+    }
+
+    if ($)
+        $(initStickyHeaders);
+
+    return {
+        shouldShowFloatingHeader,
+        updateTH,
+        initStickyHeaders,
+    };
+}));
