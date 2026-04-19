@@ -52,9 +52,7 @@ area.visibility = style.visibility;
 },
 };
 }
-if (typeof selector === "function")
-return;
-throw new Error("Unexpected jQuery call");
+	throw new Error("Unexpected jQuery call");
 }
 
 const sticky = loadStickyModule(jqueryMock);

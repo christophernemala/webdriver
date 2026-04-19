@@ -1,7 +1,10 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const issue = require("../issue.js");
+function loadIssueModule() {
+	delete require.cache[require.resolve("../issue.js")];
+	return require("../issue.js");
+}
 
 function createAttributes(entries) {
 const attrs = [];
@@ -14,12 +17,14 @@ return attrs;
 }
 
 test("buildNewIssueUrl handles trailing slash", () => {
-assert.equal(issue.buildNewIssueUrl("https://github.com/w3c/webdriver/"), "https://github.com/w3c/webdriver/issues/new");
-assert.equal(issue.buildNewIssueUrl("https://github.com/w3c/webdriver"), "https://github.com/w3c/webdriver/issues/new");
+	const issue = loadIssueModule();
+	assert.equal(issue.buildNewIssueUrl("https://github.com/w3c/webdriver/"), "https://github.com/w3c/webdriver/issues/new");
+	assert.equal(issue.buildNewIssueUrl("https://github.com/w3c/webdriver"), "https://github.com/w3c/webdriver/issues/new");
 });
 
 test("collectIssueInputs includes body and configured params", () => {
-const attrs = createAttributes({
+	const issue = loadIssueModule();
+	const attrs = createAttributes({
 "data-issue-url": "https://github.com/w3c/webdriver/",
 "data-issue-param-milestone": "Level 1",
 "data-issue-param-labels": "editorial",
@@ -36,7 +41,8 @@ labels: "editorial",
 });
 
 test("formatSelection includes chapter and section context", () => {
-const chapterHeading = {id: "design", textContent: "Design"};
+	const issue = loadIssueModule();
+	const chapterHeading = {id: "design", textContent: "Design"};
 const sectionHeading = {id: "compatibility", textContent: "Compatibility"};
 
 const chapterSection = {
@@ -64,7 +70,8 @@ result,
 });
 
 test("formatSelection falls back to quoted text when no section exists", () => {
-const selection = {
+	const issue = loadIssueModule();
+	const selection = {
 anchorNode: {parentElement: {closest: () => null}},
 toString: () => "single line",
 };
@@ -73,7 +80,8 @@ assert.equal(issue.formatSelection(selection, "https://w3c.github.io/webdriver/"
 });
 
 test("getAbsolutePosition computes coordinates relative to body", () => {
-const node = {
+	const issue = loadIssueModule();
+	const node = {
 getBoundingClientRect: () => ({top: 120, left: 90}),
 };
 const documentObj = {

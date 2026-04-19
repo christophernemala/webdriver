@@ -1,5 +1,5 @@
 (function(root, factory) {
-    var api = factory(root.jQuery);
+    const api = factory(root.jQuery);
 
     if (typeof module !== "undefined" && module.exports)
         module.exports = api;
@@ -43,7 +43,7 @@
             .trigger("scroll");
     }
 
-    if ($)
+    if ($ && !(typeof module !== "undefined" && module.exports))
         $(initStickyHeaders);
 
     return {
