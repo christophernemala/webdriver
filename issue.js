@@ -131,11 +131,14 @@ this.shown = true;
 this.paint();
 }
 
-paint() {
-if (!this.shown)
-return;
+			paint() {
+				if (!this.shown)
+					return;
 
-let pos = getAbsolutePosition(windowObj.getSelection().getRangeAt(0), documentObj);
+				let selection = windowObj.getSelection();
+				if (!selection || selection.rangeCount === 0)
+					return;
+				let pos = getAbsolutePosition(selection.getRangeAt(0), documentObj);
 
 this.el.style.position = "absolute";
 this.el.style.top = (pos.top - 40) + "px";
