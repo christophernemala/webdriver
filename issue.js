@@ -1,14 +1,14 @@
 (function(root, factory) {
-const api = factory();
+	const api = factory();
 
-if (typeof module !== "undefined" && module.exports)
-module.exports = api;
+	if (typeof module !== "undefined" && module.exports)
+		module.exports = api;
 
-if (root.document && root.document.addEventListener) {
-root.document.addEventListener("DOMContentLoaded", function() {
-api.initIssueWidget(root.document, root.window || root, root.location || (root.window && root.window.location));
-}, false);
-}
+	if (root.document && root.document.addEventListener) {
+		root.document.addEventListener("DOMContentLoaded", function() {
+			api.initIssueWidget(root.document, root.window || root, root.location || (root.window && root.window.location));
+		}, false);
+	}
 }(typeof globalThis !== "undefined" ? globalThis : this, function() {
 "use strict";
 
