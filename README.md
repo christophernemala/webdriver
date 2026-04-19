@@ -45,14 +45,14 @@ Vendor status documents
 -----------------------
 
 * [Mozilla Firefox](https://bugzilla.mozilla.org/showdependencytree.cgi?id=721859&hide_resolved=1)
-* [Microsoft Edge](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/)
+* [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver#w3c-webdriver)
 * [Apple Safari](https://developer.apple.com/documentation/webkit/macos_webdriver_commands_for_safari_12_and_later)
 * [WebKit GTK port](http://trac.webkit.org/wiki/WebDriverStatus)
 * [Selenium IEDriverServer](https://github.com/SeleniumHQ/selenium/wiki/W3C-WebDriver-Status)
-* [Chrome](https://chromium.googlesource.com/chromium/src/+/main/docs/chromedriver_status.md)
+* [Chrome](https://chromium.googlesource.com/chromium/src/+/master/docs/chromedriver_status.md)
 
 
-[Browser Testing and Tools Working Group]: https://www.w3.org/groups/wg/browser-tools-testing/
+[Browser Testing- and Tools Working Group]: https://www.w3.org/testing/browser/
 [good commit message]: https://github.com/erlang/otp/wiki/Writing-good-commit-messages
 [Acknowledgements]: https://w3c.github.io/webdriver/#acknowledgements
 [Web Platform Tests]: https://github.com/web-platform-tests/wpt/tree/master/webdriver
